@@ -95,14 +95,13 @@ public void OnPluginStart()
 	
 	AutoExecConfig(true, "weapons");
 	
-	RegConsoleCmd("buyammo1", CommandWeaponSkins);
 	RegConsoleCmd("sm_ws", CommandWeaponSkins);
-	RegConsoleCmd("buyammo2", CommandKnife);
 	RegConsoleCmd("sm_knife", CommandKnife);
 	RegConsoleCmd("sm_kf", CommandKnife);
 	RegConsoleCmd("sm_nametag", CommandNameTag);
 	RegConsoleCmd("sm_wslang", CommandWSLang);
 	RegConsoleCmd("sm_seed", CommandSeedMenu);
+	
 	RegAdminCmd("sm_wsreset", CommandResetWeaponSkins, ADMFLAG_ROOT, "Resets weapon skins and knife of a specific player.");
 	
 	PTaH(PTaH_GiveNamedItemPre, Hook, GiveNamedItemPre);
