@@ -38,7 +38,6 @@
 
 #define UPDATE_URL "https://raw.githubusercontent.com/kgns/weapons/master/addons/sourcemod/updatefile.txt"
 
-
 //#define DEBUG
 
 public Plugin myinfo = 
