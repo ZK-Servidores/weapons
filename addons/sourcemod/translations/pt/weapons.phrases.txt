@@ -28,6 +28,26 @@
 	{
 		"pt"	"Diminuir em %d%%"
 	}
+	"CustomFloat"
+	{
+		"pt"	"Insira um float personalizado"
+	}
+	"CustomFloatInstruction"
+	{
+		"pt"	"Escreva o flaot desejado no chat. Para abortar, digite !cancel."
+	}
+	"CustomFloatCancelled"
+	{
+		"pt"	"Operação float personalizado abortado."
+	}
+	"CustomFloatFailed"
+	{
+		"pt"	"Float inválido (0-1)."
+	}
+	"CustomFloatSuccess"
+	{
+		"pt"	"Float personalizado aplicado com sucesso"
+	}
 	"NameTagInfo"
 	{
 		"pt"	"Use !nametag <tag> para escolher uma name tag para sua arma atual!"
