@@ -291,7 +291,6 @@ public int FloatMenuHandler(Menu menu, MenuAction action, int client, int select
 
 public Action FloatTimer(Handle timer, DataPack pack)
 {
-
 	ResetPack(pack);
 	int clientIndex = GetClientOfUserId(pack.ReadCell());
 	int index = pack.ReadCell();
