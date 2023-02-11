@@ -30,23 +30,23 @@
 	}
 	"CustomFloat"
 	{
-		"pt"	"Insira um float personalizado"
+		"pt"	"Desgaste Personalizado"
 	}
 	"CustomFloatInstruction"
 	{
-		"pt"	"Escreva o flaot desejado no chat. Para abortar, digite !cancel."
+		"pt"	"Escreva o desgaste desejado no chat. Para abortar, digite !cancel."
 	}
 	"CustomFloatCancelled"
 	{
-		"pt"	"Operação float personalizado abortado."
+		"pt"	"Operação desgaste personalizado foi abortada."
 	}
 	"CustomFloatFailed"
 	{
-		"pt"	"Float inválido (0-1)."
+		"pt"	"Desgaste inválido (0-1)."
 	}
 	"CustomFloatSuccess"
 	{
-		"pt"	"Float personalizado aplicado com sucesso"
+		"pt"	"Desgaste personalizado aplicado com sucesso"
 	}
 	"NameTagInfo"
 	{
