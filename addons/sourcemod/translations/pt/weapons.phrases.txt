@@ -28,6 +28,26 @@
 	{
 		"pt"	"Diminuir em %d%%"
 	}
+	"CustomFloat"
+	{
+		"pt"	"Desgaste Personalizado"
+	}
+	"CustomFloatInstruction"
+	{
+		"pt"	"Escreva o desgaste desejado no chat. Para abortar, digite !cancel."
+	}
+	"CustomFloatCancelled"
+	{
+		"pt"	"Operação desgaste personalizado foi abortada."
+	}
+	"CustomFloatFailed"
+	{
+		"pt"	"Desgaste inválido (0-1)."
+	}
+	"CustomFloatSuccess"
+	{
+		"pt"	"Desgaste personalizado aplicado com sucesso"
+	}
 	"NameTagInfo"
 	{
 		"pt"	"Use !nametag <tag> para escolher uma name tag para sua arma atual!"
