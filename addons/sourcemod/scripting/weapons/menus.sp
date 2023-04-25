@@ -1,6 +1,6 @@
-/*  CS:GO Weapons&Knives SourceMod Plugin
+/*	CS:GO Weapons&Knives SourceMod Plugin
  *
- *  Copyright (C) 2017 Kağan 'kgns' Üstüngel
+ *	Copyright (C) 2017 Kağan 'kgns' Üstüngel
  * 
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -767,10 +767,13 @@ Menu CreateWeaponMenu(int client)
 	
 	Format(buffer, sizeof(buffer), "%T", "SetSkin", client);
 	menu.AddItem("skin", buffer);
-
-	if(g_bAllSkins) {
-		Format(buffer, sizeof(buffer), "%T (%T)", "SetSkin", client, "AllSkins", client);
-		menu.AddItem("skinall", buffer);
+	
+	// VIP Access - Thanks to Kento(https://github.com/rogeraabbccdd)
+	if(g_bAllSkins){
+		if(CheckCommandAccess (client, "sm_weapons_all_vip", ADMFLAG_RESERVATION, true)){
+			Format(buffer, sizeof(buffer), "%T (%T)", "SetSkin", client, "AllSkins", client);
+			menu.AddItem("skinall", buffer);
+		}
 	}
 
 	bool weaponHasSkin = (g_iSkins[client][index] != 0);
