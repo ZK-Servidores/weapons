@@ -70,6 +70,21 @@ public void ReadConfig()
 			menuWeapons[langCounter][k].AddItem("-1", "Random");
 			menuWeapons[langCounter][k].ExitBackButton = true;
 		}
+
+		if(g_bAllSkins) {
+			for (int k = 0; k < sizeof(g_WeaponClasses); k++)
+			{
+				if(menuWeaponsAll[langCounter][k] != null)
+				{
+					delete menuWeaponsAll[langCounter][k];
+				}
+				menuWeaponsAll[langCounter][k] = new Menu(WeaponsMenuAllHandler, MENU_ACTIONS_DEFAULT|MenuAction_DisplayItem);
+				menuWeaponsAll[langCounter][k].SetTitle("%T (%T)", g_WeaponClasses[k], LANG_SERVER, "AllSkins", LANG_SERVER);
+				menuWeaponsAll[langCounter][k].AddItem("0", "Default");
+				menuWeaponsAll[langCounter][k].AddItem("-2", "Random");
+				menuWeaponsAll[langCounter][k].ExitBackButton = true;
+			}
+		}
 		
 		int counter = 0;
 		char weaponTemp[20];
@@ -78,6 +93,7 @@ public void ReadConfig()
 			char name[64];
 			char index[5];
 			char classes[1024];
+			int weaponIndex;
 			
 			KvGetSectionName(kv, name, sizeof(name));
 			KvGetString(kv, "classes", classes, sizeof(classes));
@@ -110,6 +126,16 @@ public void ReadConfig()
 						menuSkins[counter].AddItem(weaponIndexStr, weaponName);
 					}
 					
+					weaponIndex = k;
+				}
+			}
+      
+			if(g_bAllSkins) {
+				char nameWeapon[64];
+				Format(nameWeapon, sizeof(nameWeapon), "%s (%T)", name, g_WeaponClasses[weaponIndex], LANG_SERVER);
+				for (int k = 0; k < sizeof(g_WeaponClasses); k++)
+				{
+					menuWeaponsAll[langCounter][k].AddItem(index, nameWeapon);
 				}
 			}
 			

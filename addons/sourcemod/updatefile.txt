@@ -4,7 +4,7 @@
 	{
 		"Version"
 		{
-			"Latest"	"1.7.5"
+			"Latest"	"1.7.8"
 		}
 	}
 	"Files"
@@ -19,18 +19,18 @@
 		"Source"	"Path_SM/scripting/weapons/helpers.sp"
 		"Source"	"Path_SM/scripting/weapons/hooks.sp"
 		"Source"	"Path_SM/scripting/weapons/menus.sp"
-		"Source"	"Path_SM/scripting/weapons/natives.sp"    
-        "Source"	"Path_SM/scripting/include/weapons.inc"
+		"Source"	"Path_SM/scripting/weapons/natives.sp"
+		"Source"	"Path_SM/scripting/include/weapons.inc"
 
 		"Plugin"	"Path_SM/translations/weapons.phrases.txt"
 		"Plugin"	"Path_SM/translations/chi/weapons.phrases.txt"
 		"Plugin"	"Path_SM/translations/fr/weapons.phrases.txt"
 		"Plugin"	"Path_SM/translations/hu/weapons.phrases.txt"
+		"Plugin"	"Path_SM/translations/pl/weapons.phrases.txt"
 		"Plugin"	"Path_SM/translations/pt/weapons.phrases.txt"
 		"Plugin"	"Path_SM/translations/pt_p/weapons.phrases.txt"
 		"Plugin"	"Path_SM/translations/tr/weapons.phrases.txt"
 		"Plugin"	"Path_SM/translations/ru/weapons.phrases.txt"
-
 
 		"Plugin"	"Path_SM/configs/weapons/weapons_brazilian.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_bulgarian.cfg"
@@ -43,7 +43,7 @@
 		"Plugin"	"Path_SM/configs/weapons/weapons_german.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_greek.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_hungarian.cfg"
-   		"Plugin"	"Path_SM/configs/weapons/weapons_italian.cfg"
+		"Plugin"	"Path_SM/configs/weapons/weapons_italian.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_japanese.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_korean.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_koreana.cfg"
@@ -53,16 +53,14 @@
 		"Plugin"	"Path_SM/configs/weapons/weapons_portuguese.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_romanian.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_russian.cfg"
-		"Plugin"	"Path_SM/configs/weapons/weapons_schinese.cfg"     
+		"Plugin"	"Path_SM/configs/weapons/weapons_schinese.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_schinese_pw.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_spanish.cfg"
-		"Plugin"	"Path_SM/configs/weapons/weapons_romanian.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_swedish.cfg"
-		"Plugin"	"Path_SM/configs/weapons/weapons_tchinese.cfg"  
+		"Plugin"	"Path_SM/configs/weapons/weapons_tchinese.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_thai.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_turkish.cfg"
-		"Plugin"	"Path_SM/configs/weapons/weapons_romanian.cfg"
 		"Plugin"	"Path_SM/configs/weapons/weapons_ukrainian.cfg"
-		"Plugin"	"Path_SM/configs/weapons/weapons_vietnamese.cfg"  
+		"Plugin"	"Path_SM/configs/weapons/weapons_vietnamese.cfg"
 	}
 }
