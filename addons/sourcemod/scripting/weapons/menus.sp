@@ -768,6 +768,13 @@ Menu CreateWeaponMenu(int client)
 	Format(buffer, sizeof(buffer), "%T", "SetSkin", client);
 	menu.AddItem("skin", buffer);
 
+	/* // All Acess - Version original
+	if(g_bAllSkins) {
+		Format(buffer, sizeof(buffer), "%T (%T)", "SetSkin", client, "AllSkins", client);
+		menu.AddItem("skinall", buffer);
+	}
+	*/
+	
 	// VIP Access - Thanks to Kento(https://github.com/rogeraabbccdd)
 	if(g_bAllSkins){
 		if(CheckCommandAccess (client, "sm_weapons_all_vip", ADMFLAG_RESERVATION, true)){
