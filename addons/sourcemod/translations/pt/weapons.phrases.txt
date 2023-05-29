@@ -68,6 +68,22 @@
 	{
 		"pt"	"Use: !nametag <tag>"
 	}
+	"SearchDisabled"
+	{
+		"pt"	"A pesquisa de skins está desativada no momento."
+	}
+	"SearchApplyAll"
+	{
+		"pt"	"Aplicar a todas skins"
+	}
+	"SearchApplyCurrent"
+	{
+		"pt"	"Aplicar a skin atual"
+	}
+	"SearchApplyCurrentFailed"
+	{
+		"pt"	"Sua arma não tem essa skin."
+	}
 	"ChooseLanguage"
 	{
 		"pt"	"Selecione o idioma para nomes de skin:"
