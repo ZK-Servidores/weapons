@@ -1,17 +1,17 @@
 /*	CS:GO Weapons&Knives SourceMod Plugin
  *
  *	Copyright (C) 2017 Kağan 'kgns' Üstüngel
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
- * Software Foundation, either version 3 of the License, or (at your option) 
+ * Software Foundation, either version 3 of the License, or (at your option)
  * any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with 
+ * You should have received a copy of the GNU General Public License along with
  * this program. If not, see http://www.gnu.org/licenses/.
  */
 
@@ -41,7 +41,7 @@
 
 //#define DEBUG
 
-public Plugin myinfo = 
+public Plugin myinfo =
 {
 	name = "Weapons & Knives",
 	author = "kgns | oyunhost.net",
@@ -56,7 +56,7 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 
 	CreateNative("Weapons_SetClientKnife", Weapons_SetClientKnife_Native);
 	CreateNative("Weapons_GetClientKnife", Weapons_GetClientKnife_Native);
-	
+
 	g_hOnKnifeSelect_Pre = CreateGlobalForward("Weapons_OnClientKnifeSelectPre", ET_Event, Param_Cell, Param_Cell, Param_String);
 	g_hOnKnifeSelect_Post = CreateGlobalForward("Weapons_OnClientKnifeSelectPost", ET_Ignore, Param_Cell, Param_Cell, Param_String);
 	return APLRes_Success;
@@ -69,7 +69,7 @@ public void OnPluginStart()
 		SetFailState("Only CS:GO servers are supported!");
 		return;
 	}
-	
+
 	if(PTaH_Version() < 101000)
 	{
 		char sBuf[16];
@@ -77,9 +77,9 @@ public void OnPluginStart()
 		SetFailState("PTaH extension needs to be updated. (Installed Version: %s - Required Version: 1.1.0+) [ Download from: https://ptah.zizt.ru ]", sBuf);
 		return;
 	}
-	
+
 	LoadTranslations("weapons.phrases");
-	
+
 	g_Cvar_DBConnection				= CreateConVar("sm_weapons_db_connection",			"storage-local",	"Database connection name in databases.cfg to use");
 	g_Cvar_TablePrefix				= CreateConVar("sm_weapons_table_prefix",			"",					"Prefix for database table (example: 'xyz_')");
 	g_Cvar_ChatPrefix				= CreateConVar("sm_weapons_chat_prefix",			"[oyunhost.net]",	"Prefix for chat messages");
@@ -91,33 +91,33 @@ public void OnPluginStart()
 	g_Cvar_EnableSearch             = CreateConVar("sm_weapons_enable_search",          "1",                "Enable/Disable Search Function");
 	g_Cvar_FloatIncrementSize 		= CreateConVar("sm_weapons_float_increment_size", 	"0.05", 			"Increase/Decrease by value for weapon float");
 	g_Cvar_EnableWeaponOverwrite 	= CreateConVar("sm_weapons_enable_overwrite", 		"1", 				"Enable/Disable players overwriting other players' weapons (picked up from the ground) by using !ws command");
-	g_Cvar_GracePeriod 			= CreateConVar("sm_weapons_grace_period", 			"0", 				"Grace period in terms of seconds counted after round start for allowing the use of !ws command. 0 means no restrictions");
+	g_Cvar_GracePeriod 				= CreateConVar("sm_weapons_grace_period", 			"0", 				"Grace period in terms of seconds counted after round start for allowing the use of !ws command. 0 means no restrictions");
 	g_Cvar_InactiveDays 			= CreateConVar("sm_weapons_inactive_days", 			"30", 				"Number of days before a player (SteamID) is marked as inactive and his data is deleted. (0 or any negative value to disable deleting)");
 	g_Cvar_EnableC4					= CreateConVar("sm_weapons_enable_c4",				"1",				"Enable/Disable C4 Skins");
 	g_Cvar_EnableAllSkins			= CreateConVar("sm_weapons_enable_all_skins",		"1",				"Enable/Disable showing all skins in menu");
-	
+
 	AutoExecConfig(true, "weapons");
-	
+
 	RegConsoleCmd("sm_ws", CommandWeaponSkins);
 	RegConsoleCmd("sm_knife", CommandKnife);
 	RegConsoleCmd("sm_kf", CommandKnife);
 	RegConsoleCmd("sm_nametag", CommandNameTag);
 	RegConsoleCmd("sm_wslang", CommandWSLang);
 	RegConsoleCmd("sm_seed", CommandSeedMenu);
-	
+
 	RegAdminCmd("sm_wsreset", CommandResetWeaponSkins, ADMFLAG_ROOT, "Resets weapon skins and knife of a specific player.");
-	
+
 	PTaH(PTaH_GiveNamedItemPre, Hook, GiveNamedItemPre);
 	PTaH(PTaH_GiveNamedItemPost, Hook, GiveNamedItemPost);
-	
+
 	ConVar g_cvGameType = FindConVar("game_type");
 	ConVar g_cvGameMode = FindConVar("game_mode");
-	
+
 	if(g_cvGameType.IntValue == 1 && g_cvGameMode.IntValue == 2)
 	{
 		PTaH(PTaH_WeaponCanUsePre, Hook, WeaponCanUsePre);
 	}
-	
+
 	AddCommandListener(ChatListener, "say");
 	AddCommandListener(ChatListener, "say2");
 	AddCommandListener(ChatListener, "say_team");
@@ -126,7 +126,7 @@ public void OnPluginStart()
 	RegAdminCmd("sm_setknife", Command_SetKnife, ADMFLAG_ROOT, "Sets knife of specific player.");
 	RegAdminCmd("sm_getknife", Command_GetClientKnife, ADMFLAG_ROOT, "Gets specific player's knife class name.");
 	#endif
-	
+
 	for(int i = 0; i < sizeof(g_iWeaponSeed); i++)
 	{
 		for(int j = 0; j < sizeof(g_iWeaponSeed[]); j++)
@@ -205,12 +205,12 @@ public Action CommandWeaponSkins(int client, int args)
 		if((menuTime = GetRemainingGracePeriodSeconds(client)) >= 0)
 		{
 			if (args > 0) {
-				
+
 				if (g_bEnableSearch)
 				{
 					char searchSkinName[32];
 					GetCmdArgString(searchSkinName, sizeof(searchSkinName));
-					
+
 					Menu resultMenu = SearchSkins(client, searchSkinName);
 					menuPlayerSearchTemp[client] = resultMenu;
 					resultMenu.Display(client, menuTime);
@@ -220,9 +220,9 @@ public Action CommandWeaponSkins(int client, int args)
 					PrintToChat(client, " %s \x02%T", g_ChatPrefix, "SearchDisabled");
 				}
 				return Plugin_Handled;
-				
+
 			}
-			
+
 			CreateMainMenu(client).Display(client, menuTime);
 		}
 		else
@@ -230,7 +230,6 @@ public Action CommandWeaponSkins(int client, int args)
 			PrintToChat(client, " %s \x02%t", g_ChatPrefix, "GracePeriod", g_iGracePeriod);
 		}
 	}
-	
 	return Plugin_Handled;
 }
 
@@ -251,7 +250,7 @@ public Action CommandResetWeaponSkins(int client, int args)
 		ReplyToCommand(client, "[SM] Please enter valid playername!");
 		return Plugin_Handled;
 	}
-	
+
 	for(int i = 0; i < sizeof(g_WeaponClasses); i++)
 	{
 		g_iSkins[target][i] = 0;
@@ -343,7 +342,7 @@ void SetWeaponProps(int client, int entity)
 			g_iSeedRandom[client][index] = GetRandomInt(0, 8192);
 			SetEntProp(entity, Prop_Send, "m_nFallbackSeed", g_iSeedRandom[client][index]);
 		}
-		
+
 		if(!IsKnife(entity))
 		{
 			if(g_bEnableStatTrak)
@@ -373,7 +372,7 @@ void SetWeaponProps(int client, int entity)
 void RefreshWeapon(int client, int index, bool defaultKnife = false)
 {
 	int size = GetEntPropArraySize(client, Prop_Send, "m_hMyWeapons");
-	
+
 	for (int i = 0; i < size; i++)
 	{
 		int weapon = GetEntPropEnt(client, Prop_Send, "m_hMyWeapons", i);
@@ -390,12 +389,12 @@ void RefreshWeapon(int client, int index, bool defaultKnife = false)
 						return;
 					}
 				}
-				
+
 				int clip = -1;
 				int ammo = -1;
 				int offset = -1;
 				int reserve = -1;
-				
+
 				if (!isKnife)
 				{
 					offset = FindDataMapInfo(client, "m_iAmmo") + (GetEntProp(weapon, Prop_Data, "m_iPrimaryAmmoType") * 4);
@@ -403,10 +402,10 @@ void RefreshWeapon(int client, int index, bool defaultKnife = false)
 					clip = GetEntProp(weapon, Prop_Send, "m_iClip1");
 					reserve = GetEntProp(weapon, Prop_Send, "m_iPrimaryReserveAmmoCount");
 				}
-				
+
 				RemovePlayerItem(client, weapon);
 				AcceptEntityInput(weapon, "KillHierarchy");
-				
+
 				if (!isKnife)
 				{
 					weapon = GivePlayerItem(client, g_WeaponClasses[index]);
@@ -443,7 +442,7 @@ public Action ReserveAmmoTimer(Handle timer, DataPack pack)
 	int clientIndex = GetClientOfUserId(pack.ReadCell());
 	int offset = pack.ReadCell();
 	int ammo = pack.ReadCell();
-	
+
 	if(clientIndex > 0 && IsClientInGame(clientIndex))
 	{
 		SetEntData(clientIndex, offset, ammo, 4, true);
