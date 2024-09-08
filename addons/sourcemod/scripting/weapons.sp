@@ -100,7 +100,6 @@ public void OnPluginStart()
 
 	RegConsoleCmd("sm_ws", CommandWeaponSkins);
 	RegConsoleCmd("sm_knife", CommandKnife);
-	RegConsoleCmd("sm_kf", CommandKnife);
 	RegConsoleCmd("sm_nametag", CommandNameTag);
 	RegConsoleCmd("sm_wslang", CommandWSLang);
 	RegConsoleCmd("sm_seed", CommandSeedMenu);
